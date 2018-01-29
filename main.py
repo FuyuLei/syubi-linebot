@@ -24,6 +24,11 @@ def hello():
     return 'Hello World!'
 
 
+@app.route('/version')
+def hello():
+    return '1.0'
+
+
 @app.route('/<user>')
 def hello_user(user):
     return 'Hello {}, nice to meet you'.format(user)
