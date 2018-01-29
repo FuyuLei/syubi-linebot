@@ -2,3 +2,4 @@
 - <https://github.com/line/line-bot-sdk-python>
 - <https://github.com/arthurc0102/line-bot-flask-test>
 - <https://developers.line.me>
+- <https://dashboard.heroku.com/apps/syubi-linebot>
