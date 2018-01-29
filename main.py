@@ -25,7 +25,7 @@ def hello():
 
 
 @app.route('/version')
-def hello():
+def version():
     return '1.0'
 
 
