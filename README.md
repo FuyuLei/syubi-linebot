@@ -1,0 +1,4 @@
+- <https://github.com/twtrubiks/Deploying-Flask-To-Heroku>
+- <https://github.com/line/line-bot-sdk-python>
+- <https://github.com/arthurc0102/line-bot-flask-test>
+- <https://developers.line.me>
