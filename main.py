@@ -57,8 +57,9 @@ def handle_message(event):
     if msg == '企鵝':
         line_bot_api.reply_message(
             event.reply_token,
-            ImageSendMessage(original_content_url='http://p1-news.yamedia.tw/NzAyNzUybmV3cw==/23d50e04b0c3027b.jpg',
-                             preview_image_url='http://p1-news.yamedia.tw/NzAyNzUybmV3cw==/23d50e04b0c3027b.jpg'))
+            ImageSendMessage(original_content_url='https://i.imgur.com/pe3lDkS.jpg',
+                             preview_image_url='https://i.imgur.com/pe3lDkS.jpg'))
+        return 
 
     line_bot_api.reply_message(
         event.reply_token,
