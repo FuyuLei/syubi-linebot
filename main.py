@@ -51,39 +51,39 @@ def callback():
     return 'OK'
 
 
-@handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
-    msg = event.message.text
     user_id = line_bot_api.get_profile(user_id)
     group_id = line_bot_api.get_profile(group_id)
 
-    if event.source.type == 'group':
-        line_bot_api.push_message(group_id, TextSendMessage(text='安安'))
-        return
+    line_bot_api.push_message(user_id, TextSendMessage(text='安安'))
 
-    line_bot_api.push_message(user_id, TextSendMessage(text='安安'))    
+
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    msg = event.message.text
 
     if msg == '企鵝掰掰' and event.source.type == 'group':
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='大家掰掰OUO/'))
         line_bot_api.leave_group(event.source.group_id)
-        return
+    return
 
     if msg == '企鵝':
         line_bot_api.reply_message(
             event.reply_token,
             ImageSendMessage(original_content_url='https://i.imgur.com/pe3lDkS.jpg',
                              preview_image_url='https://i.imgur.com/pe3lDkS.jpg'))
-        return
+    return
 
     line_bot_api.reply_message(
+    event.reply_token,
+    TextSendMessage(text=event.message.text))
+
+
+@handler.add(MessageEvent, message=StickerMessage)
+def handle_sticker_message(event):
+    line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text))
+        TextSendMessage(text='Sticker'))
 
-    @handler.add(MessageEvent, message=StickerMessage)
-    def handle_sticker_message(event):
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text='Sticker'))
 
-    if __name__ == '__main__':
-        app.run()
+if __name__ == '__main__':
+    app.run()
