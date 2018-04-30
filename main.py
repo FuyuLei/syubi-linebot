@@ -51,10 +51,15 @@ def callback():
     return 'OK'
 
 
-user_id = line_bot_api.get_profile(user_id)
-group_id = line_bot_api.get_profile(group_id)
+def push_message(event):
+    userId = line_bot_api.get_profile(user_id)
+    groupId = line_bot_api.get_profile(group_id)
 
-line_bot_api.push_message(user_id, TextSendMessage(text='安安'))
+    if event.source.type == 'group':
+        line_bot_api.push_message(groupId, TextSendMessage(text='安安'))
+    return
+
+    line_bot_api.push_message(userId, TextSendMessage(text='安安'))
 
 
 @handler.add(MessageEvent, message=TextMessage)
