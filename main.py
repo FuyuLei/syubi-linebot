@@ -51,10 +51,10 @@ def callback():
     return 'OK'
 
 
-    user_id = line_bot_api.get_profile(user_id)
-    group_id = line_bot_api.get_profile(group_id)
+user_id = line_bot_api.get_profile(user_id)
+group_id = line_bot_api.get_profile(group_id)
 
-    line_bot_api.push_message(user_id, TextSendMessage(text='安安'))
+line_bot_api.push_message(user_id, TextSendMessage(text='安安'))
 
 
 @handler.add(MessageEvent, message=TextMessage)
