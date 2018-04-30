@@ -54,6 +54,15 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
+    user_id = line_bot_api.get_profile(user_id)
+    group_id = line_bot_api.get_profile(group_id)
+
+    if event.source.type == 'group':
+        line_bot_api.push_message(group_id, TextSendMessage(text='安安'))
+        return
+
+    line_bot_api.push_message(user_id, TextSendMessage(text='安安'))    
+
     if msg == '企鵝掰掰' and event.source.type == 'group':
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='大家掰掰OUO/'))
         line_bot_api.leave_group(event.source.group_id)
@@ -70,13 +79,11 @@ def handle_message(event):
         event.reply_token,
         TextSendMessage(text=event.message.text))
 
+    @handler.add(MessageEvent, message=StickerMessage)
+    def handle_sticker_message(event):
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text='Sticker'))
 
-@handler.add(MessageEvent, message=StickerMessage)
-def handle_sticker_message(event):
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text='Sticker'))
-
-
-if __name__ == '__main__':
-    app.run()
+    if __name__ == '__main__':
+        app.run()
